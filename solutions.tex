@@ -1,0 +1,234 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+%
+\usepackage{setspace}
+\usepackage{gensymb}
+%\doublespacing
+\singlespacing
+\usepackage{float}
+%\usepackage{graphicx}
+%\usepackage{amssymb}
+%\usepackage{relsize}
+\usepackage[cmex10]{amsmath}
+%\usepackage{amsthm}
+%\interdisplaylinepenalty=2500
+%\savesymbol{iint}
+%\usepackage{txfonts}
+%\restoresymbol{TXF}{iint}
+%\usepackage{wasysym}
+\usepackage{amsthm}
+%\usepackage{iithtlc}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{bm}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+%\usepackage{xtab}
+\usepackage{longtable}
+\usepackage{multirow}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{verbatim}
+%\usepackage{tfrupee}
+\usepackage[breaklinks=true]{hyperref}
+%\usepackage{stmaryrd}
+\usepackage{tkz-euclide} % loads  TikZ and tkz-base
+%\usetkzobj{all}
+\usepackage{listings}
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+  %optionally (for landscape tables embedded in another document): %%
+    \usepackage{lscape}     
+\usepackage{multicol}
+\usepackage{chngcntr}
+%\usepackage{enumerate}
+
+%\usepackage{wasysym}
+%\newcounter{MYtempeqncnt}
+\DeclareMathOperator*{\Res}{Res}
+%\renewcommand{\baselinestretch}{2}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+%language=C,
+frame=single, 
+breaklines=true,
+columns=fullflexible
+}
+%\lstset{
+%language=tex,
+%frame=single, 
+%breaklines=true
+%}
+
+\begin{document}
+%
+
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}[problem]{Definition}
+%\newtheorem{thm}{Theorem}[section] 
+%\newtheorem{defn}[thm]{Definition}
+%\newtheorem{algorithm}{Algorithm}[section]
+%\newtheorem{cor}{Corollary}
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+
+
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+%\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\newcommand{\cosec}{\,\text{cosec}\,}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+\newcommand{\myvec}[1]{\ensuremath{\begin{pmatrix}#1\end{pmatrix}}}
+\newcommand{\mydet}[1]{\ensuremath{\begin{vmatrix}#1\end{vmatrix}}}
+%\numberwithin{equation}{section}
+%\numberwithin{equation}{subsection}
+%\numberwithin{problem}{section}
+%\numberwithin{definition}{section}
+\makeatletter
+\@addtoreset{figure}{problem}
+\makeatother
+
+\let\StandardTheFigure\thefigure
+\let\vec\mathbf
+%\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
+\renewcommand{\thefigure}{\theproblem}
+%\setlist[enumerate,1]{before=\renewcommand\theequation{\theenumi.\arabic{equation}}
+%\counterwithin{equation}{enumi}
+
+
+%\renewcommand{\theequation}{\arabic{subsection}.\arabic{equation}}
+
+\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
+     \def\rightbox#1{\makebox[0in][r]{#1}}
+     \def\centbox#1{\makebox[0in]{#1}}
+     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
+     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
+
+\vspace{3cm}
+Get cvxpy codes from
+\begin{lstlisting}
+https://github.com/PeriPriyanka/EE5606-optimization/codes
+\end{lstlisting}
+Get latex-tikz codes from 
+\begin{lstlisting}
+https://github.com/PeriPriyanka/EE5606-optimization
+\end{lstlisting}
+\begin{enumerate}
+\item There are three food items available, corn, milk, and bread. The table contains,
+the cost per serving, the amount of Vitamin A per serving, and the number of
+calories per serving for each food item. Also, there are restrictions on the total
+number of calories (between 2000 and 2250) and the total amount of Vitamin A
+(between 5000 and 50,000) intake in the diet.The goal of the diet problem is to
+select a set of food items that will satisfy a set of daily nutritional requirement
+at minimum cost. The maximum number of servings is 10 per food item. Table 1 shows all the content per serving.\\
+\begin{table}[H]
+ \centering
+ \resizebox{\columnwidth}{!}{
+ \begin{tabular}{ |c|c|c|c| } 
+ \hline
+ Food & Cost & Vitamin A  & calories \\
+ \hline
+Corn & 0.18 USD & 107 & 72\\
+ \hline
+ Milk & 0.23 USD & 500 & 121\\
+ \hline
+ Wheat Bread & 0.05 USD &0 &65\\
+ \hline
+\end{tabular}}
+ \caption{}
+ \end{table}
+\solution 
+Consider the vector $\vec{c}$ as cost vector, vector $\vec{v}$ representing the vitamin A and vector $\vec{u}$ representing calories.\\
+Let $\vec{x}$ be the variable vector.\\
+\begin{align}
+&\vec{c} = \myvec{0.18\\0.23\\0.05}\\
+& \vec{v} = \myvec{107\\500\\0}\\
+& \vec{u} = \myvec{72\\121\\65}\\
+&\vec{x} = \myvec{x\\y\\z}
+\end{align}
+Objective function 
+\begin{align}
+z = \min_\vec{x} \vec{c}^T\vec{x}
+\end{align}
+Constraints
+\begin{align}
+&5000 \leq 107x+500y+0z \leq 50000\\
+&2000 \leq 72x+121y+65z \leq 2250\\
+&0 \leq x \leq 10\\
+&0 \leq y \leq 10\\
+&0 \leq z \leq 10
+\end{align}
+Writing all the constraints in the matrix form
+\begin{align}
+&\vec{p}\vec{x} = \vec{q}\\
+&\myvec{107&500&0\\-107&-500&0\\72&121&65\\-72&-121&-65\\1&0&0\\0&1&0\\0&0&1\\-1&0&0\\0&-1&0\\0&0&-1}\vec{x}=\myvec{50000\\ -5000\\ 2250\\ -2000\\ 10\\ 10\\ 10\\ 0\\ 0\\ 0}
+\end{align}
+By providing the objective function and constraints to cvxpy, we get the optimal cost (z) and optimal no.of servings $(\vec{x})$.\\
+cvxpy code,
+\begin{lstlisting}
+https://github.com/PeriPriyanka/EE5606-optimization/codes/opt_1.py
+\end{lstlisting}
+From cvxpy, we get
+\begin{align}
+& z= 3.16  \text{USD}\\
+& \vec{x} = \myvec{2\\10\\10}
+\end{align}
+\end{enumerate}
+
+\end{document}
+
+
