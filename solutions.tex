@@ -161,11 +161,11 @@ columns=fullflexible
 \vspace{3cm}
 Get cvxpy codes from
 \begin{lstlisting}
-https://github.com/PeriPriyanka/EE5606-optimization/codes
+https://github.com/gadepall/EE5606-Optimization/codes
 \end{lstlisting}
 Get latex-tikz codes from 
 \begin{lstlisting}
-https://github.com/PeriPriyanka/EE5606-optimization
+https://github.com/gadepall/EE5606-Optimization
 \end{lstlisting}
 \begin{enumerate}
 \item There are three food items available, corn, milk, and bread. The table contains,
@@ -180,7 +180,7 @@ at minimum cost. The maximum number of servings is 10 per food item. Table 1 sho
  \resizebox{\columnwidth}{!}{
  \begin{tabular}{ |c|c|c|c| } 
  \hline
- Food & Cost & Vitamin A  & calories \\
+ Food & Cost ($\vec{c}$) & Vitamin A ($\vec{v}$) & calories ($\vec{u}$) \\
  \hline
 Corn & 0.18 USD & 107 & 72\\
  \hline
@@ -220,7 +220,7 @@ Writing all the constraints in the matrix form
 By providing the objective function and constraints to cvxpy, we get the optimal cost (z) and optimal no.of servings $(\vec{x})$.\\
 cvxpy code,
 \begin{lstlisting}
-https://github.com/PeriPriyanka/EE5606-optimization/codes/opt_1.py
+https://github.com/gadepall/EE5606-optimization/codes/opt_1.py
 \end{lstlisting}
 From cvxpy, we get
 \begin{align}
