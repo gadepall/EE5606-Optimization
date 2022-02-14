@@ -255,15 +255,15 @@ Z = \min_{b1,\vec{x}} b_1 + 1^T \vec{x}
 \end{align}
 Optimization variables,
 \begin{align}
-&\vec{w}_{n x 1} \nonumber \\
-& \vec{b}_{n x 1} \nonumber \\ &\vec{x}_{m x 1} \nonumber
+&\vec{w}_{n x 1} \\
+& \vec{b}_{n x 1}  \\ &\vec{x}_{m x 1} 
 \end{align}
 Constraints,
 \begin{align}
-&\vec{b} \succeq 0  \nonumber \\
-&\vec{x} \succeq 0 \nonumber \\
-&w_t + ({P x})_t \geq e_t \nonumber \\
-&b_{t+1} = (1+ \rho)b_t - w_t . \nonumber
+&\vec{b} \succeq 0   \\
+&\vec{x} \succeq 0 \\
+&w_t + ({P x})_t \geq e_t  \\
+&b_{t+1} = (1+ \rho)b_t - w_t .
 \end{align}
 Solution of the above objective function with the constraints is obtained by CVXPY.\\
 CVXPY code, 
