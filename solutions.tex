@@ -184,7 +184,7 @@ Corn & 0.18 USD & 107 & 72\\
 \end{tabular}}
  \caption{}
  \end{table}
-\solution 
+\solution\\ 
 Consider the vector $\vec{c}$ as cost vector, vector $\vec{v}$ representing the vitamin A and vector $\vec{u}$ representing calories.\\
 Let $\vec{x}$ be the variable vector.\\
 \begin{align}
@@ -220,6 +220,61 @@ From cvxpy, we get
 & z= 3.16  \text{USD}\\
 & \vec{x} = \myvec{2\\10\\10}
 \end{align}
+\item Funding an expense stream. Your task is to fund an expense stream over n time periods.
+We consider an expense stream $\vec{e}$ $\epsilon$ $R^n$, so that $e_t$ is our expenditure at time t.
+One possibility for funding the expense stream is through our bank account. At time
+period t, the account has balance $b_t$ and we withdraw an amount $w_t$. The value of our
+bank account accumulates with an interest rate $\rho$ per time period, less withdrawals
+\begin{align}
+b_{t+1} = (1+ \rho)b_t - w_t \nonumber
+\end{align}
+We assume the account value must be nonnegative, so that $b_t \geq$ 0 for all t.
+We can also use other investments to fund our expense stream, which we purchase at
+the initial time period t = 1, and which pay out over the n time periods. The amount
+each investment type pays out over the n time periods is given by the payout matrix
+$\vec{P}$, defined so that $P_{tj}$ is the amount investment type j pays out at time period t per
+dollar invested. There are m investment types, and we purchase $x_j \geq$ 0 dollars of
+investment type j. In time period t, the total payout of all investments purchased is
+therefore given by $({P x})_{t}$.
+In each time period, the sum of the withdrawals and the investment payouts must
+cover the expense stream, so that
+\begin{align}
+w_t + ({P x})_t \geq e_t \nonumber
+\end{align}
+for all t = 1, . . . , n.
+The total amount we invest to fund the expense stream is the sum of the initial account
+balance, and the sum total of the investments purchased: $b_1 + 1^T \vec{x}$.\\
+Using the data in \textbf{expense stream data.$^*$,}Show that the minimum initial investment that funds the expense stream can be
+found by solving a convex optimization problem.\\
+\solution\\
+Given to minimize the inital investment.\\
+Inputs to the problem, given in the data set \textbf{expense stream data.py} are $\vec{P}, \vec{e}, \rho$, Time period = n and No. of investments = m.\\
+Objective Function,
+\begin{align}
+Z = \min_{b1,\vec{x}} b_1 + 1^T \vec{x}
+\end{align}
+Optimization variables,
+\begin{align}
+&\vec{w}_{n x 1} \nonumber \\
+& \vec{b}_{n x 1} \nonumber \\ &\vec{x}_{m x 1} \nonumber
+\end{align}
+Constraints,
+\begin{align}
+&\vec{b} \succeq 0  \nonumber \\
+&\vec{x} \succeq 0 \nonumber \\
+&w_t + ({P x})_t \geq e_t \nonumber \\
+&b_{t+1} = (1+ \rho)b_t - w_t . \nonumber
+\end{align}
+Solution of the above objective function with the constraints is obtained by CVXPY.\\
+CVXPY code, 
+\begin{lstlisting}
+https://github.com/gadepall/EE5606-optimization/codes/opt_2.py
+\end{lstlisting}
+\begin{lstlisting}
+https://github.com/gadepall/EE5606-optimization/codes/expense_stream _data.py
+\end{lstlisting}
+The optimal initial investment Z = 177.51
+
 \end{enumerate}
 
 \end{document}
