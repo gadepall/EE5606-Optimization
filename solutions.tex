@@ -173,7 +173,7 @@ at minimum cost. The maximum number of servings is 10 per food item. Table 1 sho
  \resizebox{\columnwidth}{!}{
  \begin{tabular}{ |c|c|c|c| } 
  \hline
- Food & Cost ($\vec{c}$) & Vitamin A ($\vec{v}$) & calories ($\vec{u}$) \\
+ Food & Cost & Vitamin A  & calories  \\
  \hline
 Corn & 0.18 USD & 107 & 72\\
  \hline
@@ -185,14 +185,25 @@ Corn & 0.18 USD & 107 & 72\\
  \caption{}
  \end{table}
 \solution\\ 
-Consider the vector $\vec{c}$ as cost vector, vector $\vec{v}$ representing the vitamin A and vector $\vec{u}$ representing calories.\\
-Let $\vec{x}$ be the variable vector.\\
-\begin{align}
-&\vec{c} = \myvec{0.18\\0.23\\0.05}\\
-& \vec{v} = \myvec{107\\500\\0}\\
-& \vec{u} = \myvec{72\\121\\65}\\
-&\vec{x} = \myvec{x\\y\\z}
-\end{align}
+Consider,\\
+\begin{table}[H]
+ \centering
+ \resizebox{\columnwidth}{!}{
+ \begin{tabular}{ |c|c|c| } 
+ \hline
+ Description & Parameter & Value  \\
+ \hline
+Cost per serving & $\vec{c}$ & $\myvec{0.18\\0.23\\0.05}$ \\
+ \hline
+ Vitamin A per serving &$ \vec{v} $&$ \myvec{107\\500\\0}$\\ 
+ \hline
+ Calories per serving & $\vec{u}$ &$\myvec{72\\121\\65}$\\ 
+ \hline
+ No. of servings &$\vec{x}$ &$ \myvec{x\\y\\z}$\\
+ \hline
+\end{tabular}}
+ \caption{}
+ \end{table}
 Objective function 
 \begin{align}
 z = \min_\vec{x} \vec{c}^T\vec{x}
@@ -247,22 +258,47 @@ balance, and the sum total of the investments purchased: $b_1 + 1^T \vec{x}$.\\
 Using the data in \textbf{expense stream data.$^*$,}Show that the minimum initial investment that funds the expense stream can be
 found by solving a convex optimization problem.\\
 \solution\\
+Consider,
+\begin{table}[H]
+ \centering
+ \resizebox{\columnwidth}{!}{
+ \renewcommand{\arraystretch}{2}
+ \begin{tabular}{ |c|c|c| } 
+ \hline
+ Description & Parameter & Value  \\
+ \hline
+Payout Matrix & $\vec{P}_{nxm} $ & from expense stream data.py  \\
+ \hline
+ expense stream & $\vec{e}_{nx1}$ &from expense stream data.py  \\ 
+ \hline
+ Interest rate & $\rho$ &from expense stream data.py \\ 
+ \hline
+ No. of investments & m &from expense stream data.py \\
+ \hline
+ Time period & n &from expense stream data.py \\
+ \hline
+  Present Bank balance & $\vec{b}_{n x 1}$ & $?$ \\
+ \hline
+Bank withdrawals & $\vec{w}_{n x 1}$ & $?$ \\
+ \hline
+Investments purchased & $\vec{x}_{m x 1}$ & $?$ \\
+ \hline
+Total payable for investments purchaced & $\vec{Px}_{n x 1}$ & ? \\
+ \hline
+\end{tabular}
+\renewcommand{\arraystretch}{1}}
+ \caption{}
+ \end{table}
 Given to minimize the inital investment.\\
-Inputs to the problem, given in the data set \textbf{expense stream data.py} are $\vec{P}, \vec{e}, \rho$, Time period = n and No. of investments = m.\\
 Objective Function,
 \begin{align}
 Z = \min_{b1,\vec{x}} b_1 + 1^T \vec{x}
-\end{align}
-Optimization variables,
-\begin{align}
-&\vec{w}_{n x 1} \\
-& \vec{b}_{n x 1}  \\ &\vec{x}_{m x 1} 
 \end{align}
 Constraints,
 \begin{align}
 &\vec{b} \succeq 0   \\
 &\vec{x} \succeq 0 \\
-&w_t + ({P x})_t \geq e_t  \\
+&\vec{w} + \vec{P x} \succeq \vec{e} \\
 &b_{t+1} = (1+ \rho)b_t - w_t .
 \end{align}
 Solution of the above objective function with the constraints is obtained by CVXPY.\\
@@ -274,9 +310,148 @@ https://github.com/gadepall/EE5606-optimization/codes/opt_2.py
 https://github.com/gadepall/EE5606-optimization/codes/expense_stream _data.py
 \end{lstlisting}
 The optimal initial investment Z = 177.51
+\item We are tasked with designing a box shaped with width $w$, height $h$, and depth $d$. We are given that the total wall area is at most 200 square units, the total floor area is at most 60 square units, and the aspect ratios (h/w ans d/w) are at least 0.8 and at most 1.2. Formulate an optimization program to solve for the dimensions h,w and d that results in a box of the largest possible volume, and implement in CVXPY.\\
+\solution\\
+Given 
+\begin{table}[H]
+ \centering
+ \resizebox{\columnwidth}{!}{
+ \begin{tabular}{ |c|c|c| } 
+ \hline
+ Description & Parameter & Value\\
+ \hline
+ Width & w & ? \\
+ \hline
+Height & h & ? \\
+ \hline
+ Depth &d & ? \\
+ \hline
+ Volume & v & ? \\
+ \hline
+ Wall area  & 2(wh+hd) & $\leq$ 200 \\
+ \hline
+ Floor area  & dw &$ \leq$ 60 \\
+ \hline
+ Aspect ratio = h/w and d/w & $a_1$ and $a_2$ & $\leq$ 1.2 and $\geq $0.8 \\
+ \hline
+\end{tabular}}
+ \caption{}
+ \end{table}
 
+Let $\vec{w}$ be the optimization variables vector.
+\begin{align}
+\vec{w} = \myvec{w\\h\\d}
+\end{align}
+Objective is to maximize the volume of the box. \\
+\begin{align}
+{v=whd} \nonumber
+\end{align}
+
+Objective function is defined as,
+\begin{align}
+&z= \max_{w,h,d} (whd)
+\end{align}
+constraints are,
+\begin{align}
+& {wh\leq 200}\\
+&{ dw \leq 60}\\
+&{0.8\leq a_1\leq 1.2}\\
+&{0.8\leq a_2 \leq 1.2}
+\end{align}
+Writing constraints in the matrix form, 
+\begin{align}
+&\vec{w}^\text{T}\vec{P_1}\vec{w} \leq q_1\\
+& \myvec{w&h&d}\myvec{0&1&0\\0&0&0\\0&1&0}\myvec{w\\h\\d} \leq 100\\
+&\vec{w}^\text{T}\vec{P_2}\vec{w} \leq q_2\\
+& \myvec{w&h&d}\myvec{0&0&1\\0&0&0\\0&0&0}\myvec{w\\h\\d} \leq 60\\
+&\vec{P_3}\vec{w}\leq \vec{q_3}\\
+&\myvec{-0.8&-1&0\\1&-1.2&0\\-0.8&0&-1\\1&0&-1.2} \myvec{w\\h\\d} \leq \myvec{0\\0\\0}
+ \end{align}
+Solving the objective function and constrains by cvxpy.\\
+cvxpy code,
+\begin{lstlisting}
+https://github.com/gadepall/EE5606-optimization/codes/opt_3.py
+\end{lstlisting}
+The maximum optimum value is 387.29 cubic units.\\
+Optimum w = 7.74, h = 6.45, d = 7.74 units. 
+\item A fictional company AccessApple  \&  Co. produces three types of covers for Apple products:
+one for iPod, one for iPad, and another for iPhone. The company's production facilities are
+such that if we devote the entire production to iPod covers, we can produce 6000 of them
+in a day. If we devote the entire production to iPhone covers or iPad covers, we can
+produce 5000 or 3000 of them, respectively, in one day.
+The production schedule is one work week of 5 working days, and the week's production
+must be stored before distribution. Storing 1000 iPod covers (packaging included) takes up
+40 cubic feet of space. Storing 1000 iPhone covers (packaging included) takes up 45 cubic
+feet of space, and storing 1000 iPad covers (packaging included) takes up 210 cubic feet of
+space. The total storage space available is 6000 cubic feet.
+Due to a commercial agreement, AccessApple \& Co. has to deliver at least 5000 iPod
+covers, and 4000 iPad covers per week in order to strengthen the products’ diffusion.
+The marketing department estimates that the weekly demand for iPod covers, iPhone, and
+iPad covers does not exceed 10000 and 15000 , and 8000 units, respectively. Therefore the
+company does not want to produce more than these numbers.
+Finally, the net profits in USD for each iPod cover, iPhone cover, and iPad cover are USD 4,
+USD 6 and USD 10 respectively.
+The aim is to determine a weekly production schedule that maximizes the total net
+profit. \\
+
+\solution \\
+Consider,\\
+x= proportion of time devoted each day to iPod cover production,\\
+y= proportion of time devoted each day to iPhone cover production,\\
+z= proportion of time devoted each day to iPad cover production.\\
+\begin{table}[H]
+ \centering
+ \resizebox{\columnwidth}{!}{
+ \begin{tabular}{ |c|c|c| } 
+ \hline
+ Description & Parameter & Value  \\
+ \hline
+ Proportion of time devoted & $\vec{x}$ & $\myvec{x\\y\\z}$  \\ 
+ \hline
+Production per day & $\vec{p}_p $ & $\myvec{6,000\\ 5,000\\ 3,000} $ \\
+ \hline
+ Storage per 1000 units & $\vec{s}$ & $\myvec{40\\ 45\\ 210} $ \\ 
+ \hline
+ minium requirement & $\vec{m}_r$ & $\myvec{5,000\\0\\4,000} $  \\
+ \hline
+ Maximum Production & $\vec{m}_p$ & $\myvec{10,000\\15,000\\8,000}$ \\
+ \hline
+ Profit & $\vec{p}$ & $\myvec{4\\6\\10} $ \\
+ \hline
+ profit for week  & $\vec{c}$ & $\myvec{120000\\15000\\15000} $ \\
+ \hline
+\end{tabular}}
+ \caption{}
+ \end{table}
+ The elements of $ \vec{c}$ are the product of production per day, profit and no.of workings day in a week for ipod, iphone and ipad respectively.\\
+Objective function,
+\begin{align}
+z = \max_\vec{x} \vec{c}^T\vec{x}\\
+z = \min_\vec{x} (- \vec{c}^T\vec{x})
+\end{align}
+constrains,
+\begin{align}
+x+y+z \leq 1\\
+1200x+1125y+3150 \leq 6000\\
+30,0000x \geq 5000\\
+15,000z \geq 4000\\
+30,000x \leq 10,000\\
+25,000y \leq 15,000\\
+15,000z \leq 8,000\\
+\vec{x}\succeq 0
+\end{align}
+Putting all the constrains in the form$\vec{P}\vec{x}=\vec{q}$,
+\begin{align}
+\myvec{1&1&1\\1200&1125&3150\\-30,000&0&0\\0&0&-15,000\\30,000&0&0\\0&25,000&0\\0&0&15,000\\-1&0&0\\0&-1&0\\0&0&-1}\vec{x}=\myvec{1\\6,000\\-5,000\\-4,000\\10,000\\15,000\\8,000\\0\\0\\0}
+\end{align}
+Solving the objective function and constrains by cvxpy.\\
+cvxpy code,
+\begin{lstlisting}
+https://github.com/gadepall/EE5606-optimization/codes/opt_4.py
+\end{lstlisting}
+The maximum weekly profit= 1,45,000 USD.\\
+Optimum time devoted, $\vec{x} = \myvec{0.1667\\ 0.4129\\ 0.4203}$.
 \end{enumerate}
-
 \end{document}
 
 
